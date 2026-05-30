@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Superstore EDA — a retail data analysis project, from deliberate data corruption and cleaning to business insights and recommendations." />
+        <meta name="author" content="Arnan Bonny" />
+        <title>Superstore EDA — Arnan Bonny</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Custom Google font-->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- Page-specific styling.
+             Only typography + a callout box. Colors come ONLY from the theme:
+             the callout uses var(--bs-primary)/var(--bs-light), so it re-themes
+             automatically whenever you edit styles.css, exactly like every other page. -->
+        <style>
+            .story-body { font-size: 1.05rem; line-height: 1.8; }
+            .story-body p { margin-bottom: 1.4rem; }
+            .key-finding {
+                background-color: var(--bs-light);
+                border-left: 4px solid var(--bs-primary);
+                border-radius: 0 var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0;
+            }
+        </style>
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation (identical to the rest of the site)-->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Arnan Bonny</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Header / Hero-->
+            <header class="py-5">
+                <div class="container px-5 pb-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-9 col-xl-8">
+                            <div class="text-center">
+                                <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase">Data Cleaning &middot; EDA &middot; Retail Analytics</div></div>
+                                <h1 class="display-4 fw-bolder mb-3"><span class="text-gradient d-inline">Superstore EDA</span></h1>
+                                <p class="lead fw-light text-muted mb-4">I broke a clean dataset on purpose, cleaned it back, and uncovered why nearly 1 in 5 orders was losing money.</p>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="https://arnanbonny.github.io/superstore-eda/" target="_blank">Full Notebook</a>
+                                    <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="https://github.com/arnanbonny/superstore-eda" target="_blank">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Story body-->
+            <section>
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-9 col-xl-8">
+                            <div class="story-body">
+
+                                <!-- Intro -->
+                                <p>Most datasets you find on Kaggle are in pristine condition. Few missing values, no typos in the categorical columns, no fat-finger mistakes where someone adds an extra zero, no outliers. You get the picture. But real-world data isn't like that. It isn't like that at all. Even when systems are in place to validate input data, it's tough to get rid of every kind of messiness.</p>
+
+                                <p>So I wanted to corrupt the dataset myself. I broke my dataset on purpose and tried to clean it as if I'd never seen the damage. I figured it would be a good challenge. I injected 7 different kinds of common data quality issues — and I was only able to cleanly catch 6 of them. Realizing I <em>couldn't</em> catch the seventh turned out to be the most interesting thing I learned in the whole project.</p>
+
+                                <p>And once the cleaning was done — which is a far bigger portion of the work than people expect — the data told a second story: nearly one in five orders was losing money, and the cause wasn't what I expected. Let's dive into both stories.</p>
+
+                                <!-- Section 1 -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">What Exactly Did I Break?</span></h2>
+
+                                <p>Cleaning tutorials do a good job of teaching you the syntax to clean up a specific mess. But what they don't teach is judgment. When every value is already valid, you're never tested on your ability to make the important calls. A tutorial might show you how to impute a missing value with the mean, or how to drop the row altogether. But in the real world, deciding <em>whether</em> to flag a row, delete it, or impute it takes real deliberation.</p>
+
+                                <p>So to put my judgment to the test, I wrote a contamination script that injected 7 flaws into the data. Each one mirrors something that genuinely happens in production systems:</p>
+
+                                <ol>
+                                    <li class="mb-2"><strong>Missing values</strong> — fields dropped by an export pipeline, skipped by busy staff, or lost at the source.</li>
+                                    <li class="mb-2"><strong>Inconsistent categorical formatting</strong> — "Corporate", "corporate", and "corp" all coexisting in one column.</li>
+                                    <li class="mb-2"><strong>Duplicate rows</strong> — sometimes a whole record duplicated, other times one order ID appearing twice with different items.</li>
+                                    <li class="mb-2"><strong>Mixed date formats</strong> — MM/DD, DD/MM, and ISO formats all living in the same column.</li>
+                                    <li class="mb-2"><strong>Outliers</strong> — fat-finger errors, legitimate bulk orders that look like outliers, domain violations, and implausible combinations.</li>
+                                    <li class="mb-2"><strong>Hidden whitespace and invisible characters</strong> — the residue of copy-pasting from web forms and PDFs.</li>
+                                    <li class="mb-2"><strong>Legacy ALL-CAPS values</strong> — two systems with different conventions coexisting after a migration.</li>
+                                </ol>
+
+                                <!-- Section 2 -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">Six Cleaned, One to Go</span></h2>
+
+                                <p>Most of the cleanup went how you'd expect. The whitespace and invisible characters were stripped out with a few string operations. Duplicates? Dropped, after checking for both exact copies and the sneakier near-duplicates where the order ID repeats but the items differ. The mixed date formats were something I really had to scratch my head over — I had to write a parser that tried each format one by one until one of them stuck. The categorical mess (Corporate vs corporate vs Corp) is easy to clean once you know the correct spelling, using a mapping dictionary. Missing values I imputed wherever I could actually justify and explain it — postal codes from a city lookup, regions from a state mapping, product names from a product ID lookup. And the outliers I sorted by type: fixed the fat-finger errors, kept the genuine bulk orders but flagged them, and removed the clear domain violations where you just <em>know</em> a value doesn't make sense. Like a negative quantity. Surely your customers aren't selling goods back to your superstore, right? Right?</p>
+
+                                <p>Tedious work, sure. But doable.</p>
+
+                                <p>And here's the thing all six of these have in common: you can spot them by looking at a single value, or a single column. A negative quantity is wrong all by itself. A non-breaking space is right there in the cell if you look. A duplicate shows up the moment you compare rows. They don't hide.</p>
+
+                                <p class="fw-bolder fs-4">Then there was the seventh.</p>
+
+                                <!-- Section 3 -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">The One That Code Couldn't Catch</span></h2>
+
+                                <p>One of the outlier types I'd injected was what I called "contextually implausible combinations." It might sound like jargon, because it is. But the idea is simple: transactions that look fine on their own, but turn fishy the moment you look at the other columns. How can a sale with a 90% discount still turn a profit? How can a product in the Technology category have a selling price of 50 cents? I might not know for certain — but it's definitely something I can't ignore.</p>
+
+                                <p>And this is where I got stuck. Every cleaning rule I'd written checked one field at a time. Is the discount between 0 and 1? Yep, 0.9 is valid. Is the profit a sensible number? Sure, $30 is fine. Are the sales positive? They are. Every field passes every check — but the code had no way to understand my "contextually implausible combination" flag, because it never looked at the other columns while validating a single one.</p>
+
+                                <p>A 90% discount that still makes money should raise some eyebrows and set off at least one alarm. But no single-column rule will ever catch it, because no single column is doing anything wrong. To find it, you'd have to write logic that reasons across multiple columns at once.</p>
+
+                                <p>And that wasn't even the half of it once I dug in. Turns out these "contextually implausible combinations" might be perfectly plausible if you have a few years of experience in the industry. Think of a promotional giveaway. An employee buying at cost. Your code can flag the combination as suspicious, but it genuinely cannot tell you whether it's a mistake or a rare-but-real edge case. That call needs a human who actually understands the business.</p>
+
+                                <p>So how did I confirm these were corruptions and not real edge cases? Honestly, the only way I could — I went back to the original clean dataset and checked whether those combinations existed there at all. They didn't. My cleaning code, on its own, never stood a chance.</p>
+
+                                <!-- Section 4: The Analysis -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">The Analysis</span></h2>
+
+                                <p>After all that cleaning and head-scratching, I was finally left with a dataset I could trust — the starting point of so many projects. I won't dive into the endless code snippets and outputs I had to write and analyze and write and analyze again. Let's talk about the eureka moments.</p>
+
+                                <!-- Finding 1 -->
+                                <h3 class="fw-bolder mt-5 mb-3">Finding 1 — Discounts, the Prime Suspect</h3>
+
+                                <p>During my analysis, one thing stood out like a sore thumb: the discount column. After some plotting, the relationship between discount rate and profit was clear as day.</p>
+
+                                <figure class="text-center my-5">
+                                    <!-- Replace src with your exported chart: assets/discount_profit.png -->
+                                    <img class="img-fluid rounded-4 shadow" src="assets/discount_profit.png" alt="Median profit by discount tier — bars turn negative at 30% discount" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 1 — Median Profit by Discount Tier<br><span class="small fw-normal">Save as assets/discount_profit.png</span></div>
+                                    <figcaption class="figure-caption fst-italic mt-3">Median profit by discount tier. The bars turn negative — into losses — once the discount crosses 30%.</figcaption>
+                                </figure>
+
+                                <p>Look at where the bars turn red. That's where profits stop being profits. Past a certain threshold — 30% — every sale, on average, results in a loss. And look at the magnitude of those bars: that translates into thousands of dollars.</p>
+
+                                <p>That's a good start. But can I conclude that simply keeping discounts below 30% fixes everything? Nope — that's where judgment comes in. When a column reveals something this significant, it's worth spending every extra minute trying to arrive at something more specific. So I dug deeper.</p>
+
+                                <!-- Finding 2 -->
+                                <h3 class="fw-bolder mt-5 mb-3">Finding 2 — Discount Threshold, Per Category</h3>
+
+                                <p>The 30% threshold from the last chart breaks instantly once I split discounts out by category. Furniture turns unprofitable at just 20% — a sign of how thin its margins are to begin with. Office Supplies and Technology, meanwhile, hold their profitability up to 50% and 40% respectively.</p>
+
+                                <figure class="text-center my-5">
+                                    <img class="img-fluid rounded-4 shadow" src="assets/discount_per_category.png" alt="Profit by discount tier, split across Furniture, Technology, and Office Supplies" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 2 — Profit by Discount Tier, Per Category<br><span class="small fw-normal">Save as assets/discount_per_category.png</span></div>
+                                    <figcaption class="figure-caption fst-italic mt-3">Each category has its own breaking point: Furniture at 20%, Technology at 40%, Office Supplies at 50%.</figcaption>
+                                </figure>
+
+                                <p>This chart alone tells me discounts, by themselves, aren't the real culprit. The culprit is the <em>practice of applying a single blanket discount rate across every product</em>, regardless of the margins behind each one.</p>
+
+                                <!-- Finding 3 -->
+                                <h3 class="fw-bolder mt-5 mb-3">Finding 3 — Total Profit by Sub-Category</h3>
+
+                                <p>This next chart is fairly self-explanatory. Almost every sub-category sits well above the zero-profit line. Only Bookcases and Tables fall below it. And Tables alone bled over <span class="fw-bold text-primary">$10,000</span> in losses — nearly 2 out of every 3 tables are sold at a loss. Which is pretty insane.</p>
+
+                                <figure class="text-center my-5">
+                                    <img class="img-fluid rounded-4 shadow" src="assets/profit_by_subcategory.png" alt="Total profit by sub-category, with Tables and Bookcases below zero" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 3 — Total Profit by Sub-Category<br><span class="small fw-normal">Save as assets/profit_by_subcategory.png</span></div>
+                                    <figcaption class="figure-caption fst-italic mt-3">Tables and Bookcases are the only two sub-categories with negative total profit.</figcaption>
+                                </figure>
+
+                                <p>But here's where it all comes together. Notice that Bookcases and Tables are both sub-categories of <em>Furniture</em>. Aha! Simply saying "high discounts on Furniture cause the losses" would sweep the real insight under the rug. The truth is that these two specific sub-categories are the reason the entire Furniture category looks like it's losing money — while Chairs and Furnishings are perfectly profitable.</p>
+
+                                <p>To solidify the finding, I plotted it a second way — a bubble chart of discount against profit margin, sized by how often each sub-category loses money. And sure enough, Tables and Bookcases are the two big red bubbles in the danger zone.</p>
+
+                                <figure class="text-center my-5">
+                                    <img class="img-fluid rounded-4 shadow" src="assets/subcategory_bubble.png" alt="Bubble chart of discount vs profit margin, with Tables and Bookcases as large red bubbles" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 4 — Sub-Category Discount vs Profit Margin<br><span class="small fw-normal">Save as assets/subcategory_bubble.png</span></div>
+                                    <figcaption class="figure-caption fst-italic mt-3">High discount + thin margin = losses. Tables and Bookcases sit firmly in the bottom-right danger zone.</figcaption>
+                                </figure>
+
+                                <!-- Finding 4 -->
+                                <h3 class="fw-bolder mt-5 mb-3">Finding 4 — Geography</h3>
+
+                                <p>One more thing caught my eye. I wanted to know whether any of the trouble was region-specific. What if a certain campaign or policy was only in force in particular regions?</p>
+
+                                <p>My hunch was right — or rather, out of the dozens of hunches I chased, this one paid off with a genuinely actionable insight. The Central region had an absurd <span class="fw-bold text-primary">65.2% loss-making order rate</span>. And as the heatmap shows, it also carried the highest discount rate, at 29%. The other regions weren't anywhere near as aggressive with discounts, and their loss-making rates were correspondingly lower (though still significant enough to deserve their own analysis).</p>
+
+                                <figure class="text-center my-5">
+                                    <img class="img-fluid rounded-4 shadow" src="assets/region_heatmap.png" alt="Heatmaps of discount and loss-making rate across regions and categories" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 5 — Region × Category Heatmaps<br><span class="small fw-normal">Save as assets/region_heatmap.png</span></div>
+                                    <figcaption class="figure-caption fst-italic mt-3">Central region is the darkest cell — highest discounts, highest losses — concentrated in Furniture.</figcaption>
+                                </figure>
+
+                                <!-- Recommendations -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">So What Would I Actually Do About It?</span></h2>
+
+                                <p>Cleaning and analysis is one thing. Communicating it to stakeholders is another. No matter what you find, if you can't quantify it, simplify it, and communicate a solution — you might as well not have done it at all. Here's what I'd put in front of the business.</p>
+
+                                <div class="key-finding p-4 my-4">
+                                    <div class="fw-bold fs-5 mb-2">Recommendation 1 — Stop using one discount policy for every product</div>
+                                    <p class="mb-0">Discount rates are directly tied to the <span class="fw-bold text-primary">$99,334</span> in total losses, and this lever is highly actionable — which makes it pivotal. Set a discount ceiling for each category based on where it actually starts losing money: roughly <strong>20% for Furniture</strong>, <strong>30% for Technology</strong>, and up to <strong>50% for Office Supplies</strong>. Anything above those caps should require a real justification — clearing old inventory, or selling products near expiry.</p>
+                                </div>
+
+                                <div class="key-finding p-4 my-4">
+                                    <div class="fw-bold fs-5 mb-2">Recommendation 2 — Deal with the Tables and Bookcases sub-categories</div>
+                                    <p class="mb-0">These two are losing money structurally, not occasionally. The fix is more involved: a combination of repricing, negotiating better deals from suppliers, and easing off the heavy discounts. If none of that restores profitability, it's worth seriously asking whether they belong in the catalog at all. Before pulling the plug, though, a basket analysis is worth doing — to check whether customers who buy tables also buy other, profitable items in the same order.</p>
+                                </div>
+
+                                <div class="key-finding p-4 my-4">
+                                    <div class="fw-bold fs-5 mb-2">Recommendation 3 — Keep an eye on the Central region</div>
+                                    <p class="mb-0">As the data showed, Central was discounting Furniture into the ground and racking up huge losses. If the sales team is rewarded purely for number of sales, that could be incentivizing these absurd discounts. That's likely just one reason among many — so a closer look into <em>why</em> such discounts are being handed out in Central would be the best next step.</p>
+                                </div>
+
+                                <!-- Lessons -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">Lessons I Learned</span></h2>
+
+                                <p>If I had to distill this project down, I'd say I learned two important lessons.</p>
+
+                                <p><strong>First:</strong> you can't just work with any dataset and expect the numbers to tell you the whole story. You need experience and guidance in the industry itself. Those contextually implausible combinations are something you can only catch if you understand the ins and outs of the domain. That's why understanding the business comes before any analysis. And while cleaning is dismissed as grunt work by many professionals, a good cleaning job doesn't just lay the foundation for accurate analysis — it requires the expertise of someone who actually knows the field.</p>
+
+                                <p><strong>Second:</strong> I know the Superstore dataset is one of the most overused on the internet. But that doesn't mean its interpretation is the same across the board. The thinking process matters. The decisions you arrive at matter. The dataset might be identical — but the quality of interpretation varies enormously.</p>
+
+                                <!-- Closing CTA -->
+                                <div class="text-center my-5 py-4">
+                                    <p class="fw-bolder fs-5 mb-4">Want the full technical detail?</p>
+                                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                        <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="https://arnanbonny.github.io/superstore-eda/" target="_blank">Read the Full Notebook</a>
+                                        <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="YOUR_SUBSTACK_LINK_HERE" target="_blank">Read on Substack</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer (identical to the rest of the site)-->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Arnan Bonny 2026</div></div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
