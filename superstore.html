@@ -134,7 +134,7 @@
 
                                 <figure class="text-center my-5">
                                     <!-- Replace src with your exported chart: assets/discount_profit.png -->
-                                    <img class="img-fluid rounded-4 shadow" src="assets/discount_profit.png" alt="Median profit by discount tier — bars turn negative at 30% discount" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Median Profit by Discount Tier.png" alt="Median profit by discount tier — bars turn negative at 30% discount" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                                     <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 1 — Median Profit by Discount Tier<br><span class="small fw-normal">Save as assets/discount_profit.png</span></div>
                                     <figcaption class="figure-caption fst-italic mt-3">Median profit by discount tier. The bars turn negative — into losses — once the discount crosses 30%.</figcaption>
                                 </figure>
@@ -146,10 +146,10 @@
                                 <!-- Finding 2 -->
                                 <h3 class="fw-bolder mt-5 mb-3">Finding 2 — Discount Threshold, Per Category</h3>
 
-                                <p>The 30% threshold from the last chart breaks instantly once I split discounts out by category. Furniture turns unprofitable at just 20% — a sign of how thin its margins are to begin with. Office Supplies and Technology, meanwhile, hold their profitability up to 50% and 40% respectively.</p>
+                                <p>The 30% threshold from the last chart false apart instantly once I split discounts out by category. Furniture turns unprofitable at just 20%, which is a sign of how thin its margins are to begin with. Office Supplies and Technology, meanwhile, hold their profitability up to 50% and 40% respectively.</p>
 
                                 <figure class="text-center my-5">
-                                    <img class="img-fluid rounded-4 shadow" src="assets/discount_per_category.png" alt="Profit by discount tier, split across Furniture, Technology, and Office Supplies" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Profit by Discount Tier - Per Category.png" alt="Profit by discount tier, split across Furniture, Technology, and Office Supplies" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                                     <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 2 — Profit by Discount Tier, Per Category<br><span class="small fw-normal">Save as assets/discount_per_category.png</span></div>
                                     <figcaption class="figure-caption fst-italic mt-3">Each category has its own breaking point: Furniture at 20%, Technology at 40%, Office Supplies at 50%.</figcaption>
                                 </figure>
@@ -162,7 +162,7 @@
                                 <p>This next chart is fairly self-explanatory. Almost every sub-category sits well above the zero-profit line. Only Bookcases and Tables fall below it. And Tables alone bled over <span class="fw-bold text-primary">$10,000</span> in losses — nearly 2 out of every 3 tables are sold at a loss. Which is pretty insane.</p>
 
                                 <figure class="text-center my-5">
-                                    <img class="img-fluid rounded-4 shadow" src="assets/profit_by_subcategory.png" alt="Total profit by sub-category, with Tables and Bookcases below zero" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Total Profit by Sub-Category.png" alt="Total profit by sub-category, with Tables and Bookcases below zero" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                                     <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 3 — Total Profit by Sub-Category<br><span class="small fw-normal">Save as assets/profit_by_subcategory.png</span></div>
                                     <figcaption class="figure-caption fst-italic mt-3">Tables and Bookcases are the only two sub-categories with negative total profit.</figcaption>
                                 </figure>
@@ -172,7 +172,7 @@
                                 <p>To solidify the finding, I plotted it a second way — a bubble chart of discount against profit margin, sized by how often each sub-category loses money. And sure enough, Tables and Bookcases are the two big red bubbles in the danger zone.</p>
 
                                 <figure class="text-center my-5">
-                                    <img class="img-fluid rounded-4 shadow" src="assets/subcategory_bubble.png" alt="Bubble chart of discount vs profit margin, with Tables and Bookcases as large red bubbles" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Sub-Category - Discount vs Profit Margin.png" alt="Bubble chart of discount vs profit margin, with Tables and Bookcases as large red bubbles" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                                     <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 4 — Sub-Category Discount vs Profit Margin<br><span class="small fw-normal">Save as assets/subcategory_bubble.png</span></div>
                                     <figcaption class="figure-caption fst-italic mt-3">High discount + thin margin = losses. Tables and Bookcases sit firmly in the bottom-right danger zone.</figcaption>
                                 </figure>
@@ -185,7 +185,7 @@
                                 <p>My hunch was right — or rather, out of the dozens of hunches I chased, this one paid off with a genuinely actionable insight. The Central region had an absurd <span class="fw-bold text-primary">65.2% loss-making order rate</span>. And as the heatmap shows, it also carried the highest discount rate, at 29%. The other regions weren't anywhere near as aggressive with discounts, and their loss-making rates were correspondingly lower (though still significant enough to deserve their own analysis).</p>
 
                                 <figure class="text-center my-5">
-                                    <img class="img-fluid rounded-4 shadow" src="assets/region_heatmap.png" alt="Heatmaps of discount and loss-making rate across regions and categories" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Loss-Making Orders % — Region × Category.png" alt="Heatmaps of discount and loss-making rate across regions and categories" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                                     <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 5 — Region × Category Heatmaps<br><span class="small fw-normal">Save as assets/region_heatmap.png</span></div>
                                     <figcaption class="figure-caption fst-italic mt-3">Central region is the darkest cell — highest discounts, highest losses — concentrated in Furniture.</figcaption>
                                 </figure>
