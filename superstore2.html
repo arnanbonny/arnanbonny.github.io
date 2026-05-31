@@ -78,7 +78,7 @@
                             <div class="text-center">
                                 <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase">Data Cleaning &middot; EDA &middot; Retail Analytics</div></div>
                                 <h1 class="display-4 fw-bolder mb-3"><span class="text-gradient d-inline">Superstore EDA</span></h1>
-                                <p class="lead fw-light text-muted mb-4">Uncovering why 1 in 5 retail orders was losing money — and what to do about it.</p>
+                                <p class="lead fw-light text-muted mb-4">Uncovering why 1 in 5 retail orders was losing money and what to do about it.</p>
                                 <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-3">
                                     <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="https://arnanbonny.github.io/superstore-eda/" target="_blank">Full Notebook</a>
                                     <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="https://github.com/arnanbonny/superstore-eda" target="_blank">GitHub</a>
@@ -134,7 +134,14 @@
 
                                 <!-- Overview -->
                                 <h2 class="fw-bolder mt-2 mb-3"><span class="text-gradient d-inline">Project Overview</span></h2>
-                                <p>An end-to-end exploratory data analysis on the Superstore retail dataset. To mirror real-world conditions, I deliberately corrupted a clean version of the data with seven realistic quality issues, then cleaned it back as if I'd never seen the damage. The analysis that followed identified discounting policy as the primary driver of structural losses and produced three category-specific recommendations.</p>
+                                <p>An end-to-end exploratory data analysis on the Superstore retail dataset. 
+                                    To mirror real-world conditions, 
+                                    I deliberately corrupted a clean version of the data 
+                                    with seven quality issues I often seen in real life,
+                                    then cleaned it as if I'd never seen the damage.
+                                    The analysis that followed identified 
+                                    discounting policy as the primary reason of 
+                                    the incurred losses and produced three category-specific recommendations.</p>
 
                                 <div class="my-4">
                                     <span class="skill-pill">Python</span>
@@ -147,18 +154,21 @@
 
                                 <!-- Data Quality -->
                                 <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">Data Quality &amp; Cleaning</span></h2>
-                                <p>I injected seven categories of realistic data quality issues — missing values, inconsistent categoricals, duplicate rows, mixed date formats, multiple outlier types, hidden whitespace, and legacy ALL-CAPS values — then resolved each one with documented judgment calls (impute vs. flag vs. delete).</p>
+                                <p>I injected seven categories of realistic data quality issues. Which are missing values, inconsistent categoricals,
+                                     duplicate rows, mixed date formats, multiple outlier types, 
+                                     hidden whitespace, and  ALL-CAPS values, then resolved each one
+                                    with documented  calls I've made along the way.</p>
 
-                                <p>Six of the seven were resolvable with column-level rules. The seventh — <strong>contextually implausible combinations</strong> (e.g. a 90% discount with positive profit) — was not. Every individual field passed validation, but the combination was nonsense. Single-column rules can't catch this class of issue; it requires cross-column logic, and even then, some "anomalies" may be legitimate edge cases (promotional giveaways, employee purchases). Resolving them required domain reasoning, not code.</p>
+                                <p>Six of the seven were resolvable with column-level rules. The seventh — <strong>contextually implausible combinations</strong> (e.g. a 90% discount with positive profit) was not. Every individual field passed validation, but the combination was nonsensical. Single-column rules can't catch this class of issue, it requires cross-column logic, and even then, some "anomalies" may be legitimate edge cases (promotional giveaways, employee purchases). Resolving them required domain reasoning and judgement calls.</p>
 
-                                <p class="text-muted fst-italic">This is the kind of issue that doesn't appear in cleaning tutorials but consistently does in production data.</p>
+                                <p class="text-muted fst-italic">This is the kind of issue that doesn't appear in cleaning tutorials but consistently does so in real-life production environments.</p>
 
                                 <!-- Analysis -->
                                 <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">Key Findings</span></h2>
 
                                 <!-- Finding 1 -->
-                                <h3 class="fw-bolder mt-4 mb-3">1. Profit collapses past a 30% discount</h3>
-                                <p>Median profit turns negative once discount exceeds 30%, with losses scaling sharply at higher tiers.</p>
+                                <h3 class="fw-bolder mt-4 mb-3">1. Profit sinks past a 30% discount</h3>
+                                <p>Median profit turns negative once the discount rate exceeds 30%, with losses scaling sharply as the discount rate passes a certain threshold .</p>
 
                                 <figure class="text-center my-4">
                                     <img class="img-fluid rounded-4 shadow" src="assets/Median Profit by Discount Tier.png" alt="Median profit by discount tier — bars turn negative at 30% discount" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
@@ -167,7 +177,9 @@
 
                                 <!-- Finding 2 -->
                                 <h3 class="fw-bolder mt-5 mb-3">2. The 30% threshold varies sharply by category</h3>
-                                <p>Splitting the same view by category reveals that the headline threshold is misleading. Each category breaks at a different point — Furniture at 20%, Technology at 40%, Office Supplies not until 50%. A blanket discount policy applied across all three is structurally costing the business.</p>
+                                <p>Splitting the same view by category reveals 
+                                    that the headline threshold is 
+                                    misleading. Each category breaks at a different point. For example,  Furniture breaks at 20%, Technology at 40%, Office Supplies not until 50%. A blanket discount policy applied across all three is structurally costing the business.</p>
 
                                 <figure class="text-center my-4">
                                     <img class="img-fluid rounded-4 shadow" src="assets/Profit by Discount Tier - Per Category.png" alt="Profit by discount tier, split across Furniture, Technology, and Office Supplies" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
@@ -176,7 +188,7 @@
 
                                 <!-- Finding 3 -->
                                 <h3 class="fw-bolder mt-5 mb-3">3. Two sub-categories drive nearly all the losses</h3>
-                                <p>Of 17 sub-categories, only two carry negative total profit: <strong>Tables</strong> (over $10K in losses, with ~2 in 3 orders sold at a loss) and <strong>Bookcases</strong>. Both sit inside Furniture and drag the entire category's reported performance down — while Chairs and Furnishings remain profitable. The framing matters: "Furniture is unprofitable" is misleading; the real problem is two specific product lines.</p>
+                                <p>Of 17 total sub-categories, only two carry negative total profit: <strong>Tables</strong> (over $10K in losses, with ~2 in 3 orders sold at a loss) and <strong>Bookcases</strong>. Both sit inside Furniture and drag the entire category's reported performance down — while Chairs and Furnishings remain profitable. The framing matters: "Furniture is unprofitable" is misleading; the real problem is two specific product lines.</p>
 
                                 <figure class="text-center my-4">
                                     <img class="img-fluid rounded-4 shadow" src="assets/Total Profit by Sub-Category.png" alt="Total profit by sub-category, with Tables and Bookcases below zero" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
@@ -195,7 +207,7 @@
                                 <p>The <strong>Central region</strong> has a 65.2% loss-making order rate, paired with the highest average discount (29%) of any region. The pattern doesn't replicate elsewhere, suggesting a regional policy or incentive issue rather than a market-wide one.</p>
 
                                 <figure class="text-center my-4">
-                                    <img class="img-fluid rounded-4 shadow" src="assets/Loss-Making Orders % — Region × Category.png" alt="Region × Category heatmaps showing Central region's outsized losses" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Region Category Heatmap.png" alt="Region × Category heatmaps showing Central region's outsized losses" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
                                     <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 5 — Region × Category Heatmaps<br><span class="small fw-normal">Save as assets/region_heatmap.png</span></div>
                                 </figure>
 
@@ -209,7 +221,7 @@
 
                                 <div class="key-finding p-4 my-3">
                                     <div class="fw-bold fs-5 mb-2">2. Restructure or exit the Tables and Bookcases lines</div>
-                                    <p class="mb-0">Repricing, supplier renegotiation, and reduced discount intensity should be attempted first. If unprofitable after those, run a basket analysis to test whether these products pull profitable attached items before considering discontinuation.</p>
+                                    <p class="mb-0">Repricing, supplier renegotiation, and reduced discount intensity should be attempted first. If they are still unprofitable after those, run a basket analysis to test whether these products pull profitable attached items before considering discontinuation.</p>
                                 </div>
 
                                 <div class="key-finding p-4 my-3">
@@ -220,16 +232,16 @@
                                 <!-- What this demonstrates -->
                                 <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">Approach &amp; Skills Demonstrated</span></h2>
                                 <ul>
-                                    <li class="mb-2"><strong>Data quality judgment</strong> — distinguishing legitimate outliers from data errors; choosing impute / flag / delete per case with documented reasoning</li>
-                                    <li class="mb-2"><strong>Cross-column reasoning</strong> — identifying issues that single-column validation rules cannot catch</li>
-                                    <li class="mb-2"><strong>Business framing</strong> — translating statistical patterns into category-specific, actionable recommendations</li>
+                                    <li class="mb-2"><strong>Data quality judgment</strong> — distinguishing legitimate outliers from data errors, choosing to impute or flag or delete per case with documented reasoning</li>
+                                    <li class="mb-2"><strong>Cross-column reasoning</strong> — identifying issues that single-column validation rules cannot identify and rectify</li>
+                                    <li class="mb-2"><strong>Business framing</strong> — analyzing and studying statistical patterns to make category-specific, actionable recommendations</li>
                                     <li class="mb-2"><strong>Avoiding aggregation traps</strong> — recognizing when an overall threshold (30%) hides important category-level variation</li>
                                 </ul>
 
                                 <!-- Closing CTA -->
                                 <div class="text-center my-5 py-4">
                                     <p class="fw-bolder fs-5 mb-1">For the full technical detail:</p>
-                                    <p class="text-muted mb-4">The notebook covers the cleaning code, intermediate analyses, and every chart in context. The article covers the reasoning and thought process.</p>
+                                    <p class="text-muted mb-4">The notebook covers the cleaning code, intermediate analyses, and every chart in context. The article covers the reasoning and thought process and the whole project in the form of a story.</p>
                                     <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
                                         <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="https://arnanbonny.github.io/superstore-eda/" target="_blank">Full Notebook</a>
                                         <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="YOUR_SUBSTACK_LINK_HERE" target="_blank">Read the Article</a>
