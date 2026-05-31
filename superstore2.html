@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Superstore EDA — an end-to-end retail data analysis project covering data corruption, cleaning, and business insights." />
+        <meta name="author" content="Arnan Bonny" />
+        <title>Superstore EDA — Arnan Bonny</title>
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            .story-body { font-size: 1.05rem; line-height: 1.75; }
+            .story-body p { margin-bottom: 1.2rem; }
+            .stat-card {
+                background-color: var(--bs-light);
+                border-radius: var(--bs-border-radius-lg);
+                padding: 1.5rem 1rem;
+                text-align: center;
+                height: 100%;
+            }
+            .stat-card .stat-number {
+                font-size: 2rem;
+                font-weight: 800;
+                color: var(--bs-primary);
+                line-height: 1;
+                margin-bottom: 0.5rem;
+            }
+            .stat-card .stat-label {
+                font-size: 0.85rem;
+                color: var(--bs-gray-700);
+                font-weight: 500;
+            }
+            .key-finding {
+                background-color: var(--bs-light);
+                border-left: 4px solid var(--bs-primary);
+                border-radius: 0 var(--bs-border-radius-lg) var(--bs-border-radius-lg) 0;
+            }
+            .skill-pill {
+                display: inline-block;
+                padding: 0.35rem 0.85rem;
+                background-color: var(--bs-light);
+                border: 1px solid var(--bs-gray-300);
+                border-radius: var(--bs-border-radius-pill);
+                font-size: 0.85rem;
+                font-weight: 600;
+                margin: 0.25rem;
+                color: var(--bs-gray-800);
+            }
+        </style>
+    </head>
+    <body class="d-flex flex-column h-100">
+        <main class="flex-shrink-0">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+                <div class="container px-5">
+                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Arnan Bonny</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                            <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Header / Hero -->
+            <header class="py-5">
+                <div class="container px-5 pb-3">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-10 col-xl-9">
+                            <div class="text-center">
+                                <div class="badge bg-gradient-primary-to-secondary text-white mb-4"><div class="text-uppercase">Data Cleaning &middot; EDA &middot; Retail Analytics</div></div>
+                                <h1 class="display-4 fw-bolder mb-3"><span class="text-gradient d-inline">Superstore EDA</span></h1>
+                                <p class="lead fw-light text-muted mb-4">Uncovering why 1 in 5 retail orders was losing money — and what to do about it.</p>
+                                <div class="d-grid gap-3 d-sm-flex justify-content-sm-center mb-3">
+                                    <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="https://arnanbonny.github.io/superstore-eda/" target="_blank">Full Notebook</a>
+                                    <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="https://github.com/arnanbonny/superstore-eda" target="_blank">GitHub</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Headline stats -->
+            <section class="pb-5">
+                <div class="container px-5">
+                    <div class="row gx-3 justify-content-center">
+                        <div class="col-lg-10 col-xl-9">
+                            <div class="row gx-3 gy-3">
+                                <div class="col-md-3 col-6">
+                                    <div class="stat-card">
+                                        <div class="stat-number">$99K</div>
+                                        <div class="stat-label">Total losses identified</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="stat-card">
+                                        <div class="stat-number">18.4%</div>
+                                        <div class="stat-label">Of orders losing money</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="stat-card">
+                                        <div class="stat-number">30%</div>
+                                        <div class="stat-label">Discount-loss threshold</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-6">
+                                    <div class="stat-card">
+                                        <div class="stat-number">7</div>
+                                        <div class="stat-label">Data quality issues handled</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Project body -->
+            <section>
+                <div class="container px-5">
+                    <div class="row gx-5 justify-content-center">
+                        <div class="col-lg-10 col-xl-9">
+                            <div class="story-body">
+
+                                <!-- Overview -->
+                                <h2 class="fw-bolder mt-2 mb-3"><span class="text-gradient d-inline">Project Overview</span></h2>
+                                <p>An end-to-end exploratory data analysis on the Superstore retail dataset. To mirror real-world conditions, I deliberately corrupted a clean version of the data with seven realistic quality issues, then cleaned it back as if I'd never seen the damage. The analysis that followed identified discounting policy as the primary driver of structural losses and produced three category-specific recommendations.</p>
+
+                                <div class="my-4">
+                                    <span class="skill-pill">Python</span>
+                                    <span class="skill-pill">pandas</span>
+                                    <span class="skill-pill">numpy</span>
+                                    <span class="skill-pill">matplotlib</span>
+                                    <span class="skill-pill">seaborn</span>
+                                    <span class="skill-pill">Jupyter</span>
+                                </div>
+
+                                <!-- Data Quality -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">Data Quality &amp; Cleaning</span></h2>
+                                <p>I injected seven categories of realistic data quality issues — missing values, inconsistent categoricals, duplicate rows, mixed date formats, multiple outlier types, hidden whitespace, and legacy ALL-CAPS values — then resolved each one with documented judgment calls (impute vs. flag vs. delete).</p>
+
+                                <p>Six of the seven were resolvable with column-level rules. The seventh — <strong>contextually implausible combinations</strong> (e.g. a 90% discount with positive profit) — was not. Every individual field passed validation, but the combination was nonsense. Single-column rules can't catch this class of issue; it requires cross-column logic, and even then, some "anomalies" may be legitimate edge cases (promotional giveaways, employee purchases). Resolving them required domain reasoning, not code.</p>
+
+                                <p class="text-muted fst-italic">This is the kind of issue that doesn't appear in cleaning tutorials but consistently does in production data.</p>
+
+                                <!-- Analysis -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">Key Findings</span></h2>
+
+                                <!-- Finding 1 -->
+                                <h3 class="fw-bolder mt-4 mb-3">1. Profit collapses past a 30% discount</h3>
+                                <p>Median profit turns negative once discount exceeds 30%, with losses scaling sharply at higher tiers.</p>
+
+                                <figure class="text-center my-4">
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Median Profit by Discount Tier.png" alt="Median profit by discount tier — bars turn negative at 30% discount" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 1 — Median Profit by Discount Tier<br><span class="small fw-normal">Save as assets/discount_profit.png</span></div>
+                                </figure>
+
+                                <!-- Finding 2 -->
+                                <h3 class="fw-bolder mt-5 mb-3">2. The 30% threshold varies sharply by category</h3>
+                                <p>Splitting the same view by category reveals that the headline threshold is misleading. Each category breaks at a different point — Furniture at 20%, Technology at 40%, Office Supplies not until 50%. A blanket discount policy applied across all three is structurally costing the business.</p>
+
+                                <figure class="text-center my-4">
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Profit by Discount Tier - Per Category.png" alt="Profit by discount tier, split across Furniture, Technology, and Office Supplies" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 2 — Profit by Discount Tier, Per Category<br><span class="small fw-normal">Save as assets/discount_per_category.png</span></div>
+                                </figure>
+
+                                <!-- Finding 3 -->
+                                <h3 class="fw-bolder mt-5 mb-3">3. Two sub-categories drive nearly all the losses</h3>
+                                <p>Of 17 sub-categories, only two carry negative total profit: <strong>Tables</strong> (over $10K in losses, with ~2 in 3 orders sold at a loss) and <strong>Bookcases</strong>. Both sit inside Furniture and drag the entire category's reported performance down — while Chairs and Furnishings remain profitable. The framing matters: "Furniture is unprofitable" is misleading; the real problem is two specific product lines.</p>
+
+                                <figure class="text-center my-4">
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Total Profit by Sub-Category.png" alt="Total profit by sub-category, with Tables and Bookcases below zero" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 3 — Total Profit by Sub-Category<br><span class="small fw-normal">Save as assets/profit_by_subcategory.png</span></div>
+                                </figure>
+
+                                <p>Plotted as discount vs. profit margin with bubble size representing loss frequency, Tables and Bookcases sit alone in the high-discount, negative-margin quadrant.</p>
+
+                                <figure class="text-center my-4">
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Sub-Category - Discount vs Profit Margin.png" alt="Bubble chart of discount vs profit margin" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 4 — Sub-Category Discount vs Profit Margin<br><span class="small fw-normal">Save as assets/subcategory_bubble.png</span></div>
+                                </figure>
+
+                                <!-- Finding 4 -->
+                                <h3 class="fw-bolder mt-5 mb-3">4. Losses are geographically concentrated</h3>
+                                <p>The <strong>Central region</strong> has a 65.2% loss-making order rate, paired with the highest average discount (29%) of any region. The pattern doesn't replicate elsewhere, suggesting a regional policy or incentive issue rather than a market-wide one.</p>
+
+                                <figure class="text-center my-4">
+                                    <img class="img-fluid rounded-4 shadow" src="assets/Loss-Making Orders % — Region × Category.png" alt="Region × Category heatmaps showing Central region's outsized losses" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+                                    <div class="bg-light border rounded-4 text-muted fw-bold p-5" style="display:none;">CHART 5 — Region × Category Heatmaps<br><span class="small fw-normal">Save as assets/region_heatmap.png</span></div>
+                                </figure>
+
+                                <!-- Recommendations -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">Recommendations</span></h2>
+
+                                <div class="key-finding p-4 my-3">
+                                    <div class="fw-bold fs-5 mb-2">1. Replace the blanket discount policy with category-specific caps</div>
+                                    <p class="mb-0">Cap discounts at <strong>20% for Furniture</strong>, <strong>40% for Technology</strong>, and <strong>50% for Office Supplies</strong>, aligned with the actual break-even points. Anything above should require an explicit business justification (clearance, expiring stock).</p>
+                                </div>
+
+                                <div class="key-finding p-4 my-3">
+                                    <div class="fw-bold fs-5 mb-2">2. Restructure or exit the Tables and Bookcases lines</div>
+                                    <p class="mb-0">Repricing, supplier renegotiation, and reduced discount intensity should be attempted first. If unprofitable after those, run a basket analysis to test whether these products pull profitable attached items before considering discontinuation.</p>
+                                </div>
+
+                                <div class="key-finding p-4 my-3">
+                                    <div class="fw-bold fs-5 mb-2">3. Investigate Central region incentives</div>
+                                    <p class="mb-0">The discounting pattern is concentrated and consistent, which points to a policy or compensation structure rewarding volume over margin. A regional incentive review is the natural next step.</p>
+                                </div>
+
+                                <!-- What this demonstrates -->
+                                <h2 class="fw-bolder mt-5 mb-3"><span class="text-gradient d-inline">Approach &amp; Skills Demonstrated</span></h2>
+                                <ul>
+                                    <li class="mb-2"><strong>Data quality judgment</strong> — distinguishing legitimate outliers from data errors; choosing impute / flag / delete per case with documented reasoning</li>
+                                    <li class="mb-2"><strong>Cross-column reasoning</strong> — identifying issues that single-column validation rules cannot catch</li>
+                                    <li class="mb-2"><strong>Business framing</strong> — translating statistical patterns into category-specific, actionable recommendations</li>
+                                    <li class="mb-2"><strong>Avoiding aggregation traps</strong> — recognizing when an overall threshold (30%) hides important category-level variation</li>
+                                </ul>
+
+                                <!-- Closing CTA -->
+                                <div class="text-center my-5 py-4">
+                                    <p class="fw-bolder fs-5 mb-1">For the full technical detail:</p>
+                                    <p class="text-muted mb-4">The notebook covers the cleaning code, intermediate analyses, and every chart in context. The article covers the reasoning and thought process.</p>
+                                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                                        <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="https://arnanbonny.github.io/superstore-eda/" target="_blank">Full Notebook</a>
+                                        <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="YOUR_SUBSTACK_LINK_HERE" target="_blank">Read the Article</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white py-4 mt-auto">
+            <div class="container px-5">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-auto"><div class="small m-0">Copyright &copy; Arnan Bonny 2026</div></div>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
